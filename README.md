@@ -7,33 +7,39 @@ Tanpa framework, tanpa font eksternal, tanpa library JS — cepat dimuat dan mud
 
 - **Repo:** https://github.com/jhaf79/rumahcctv (public, branch `main`)
 - **GitHub Pages URL:** https://jhaf79.github.io/rumahcctv/
-- **Domain kustom:** https://rumahcctv.my.id (file `CNAME` sudah ditambahkan, Pages sudah dikonfigurasi)
+- **Domain kustom:** https://rumahcctv.my.id (Aktif HTTPS via Cloudflare proxy, origin GitHub Pages)
 - **WhatsApp:** 0852-8033-0855 → `wa.me/6285280330855`
 - **Email:** jhaf79@gmail.com
 - **Area layanan:** Depok, Bogor, DKI Jakarta, Bekasi, Tangerang, Banten
 
+### Konfigurasi DNS & SSL (sudah aktif)
+
+Nameserver domain diarahkan ke Cloudflare:
+
+- `carol.ns.cloudflare.com`
+- `george.ns.cloudflare.com`
+
+Di Cloudflare → **DNS → Records**:
+
+| Type | Name | Value | Proxy |
+|---|---|---|---|
+| A | `@` | `185.199.108.153` | 🟠 Proxied |
+| A | `@` | `185.199.109.153` | 🟠 Proxied |
+| A | `@` | `185.199.110.153` | 🟠 Proxied |
+| A | `@` | `185.199.111.153` | 🟠 Proxied |
+| CNAME | `www` | `jhaf79.github.io` | 🟠 Proxied |
+
+Cloudflare → **SSL/TLS → Overview → Flexible**, dan **Edge Certificates → Always Use HTTPS → On**.
+
+Hasil: `https://rumahcctv.my.id` → 200 OK, HTTP otomatis 301 ke HTTPS.
+
 ### Yang masih perlu dilakukan
 
-1. **Arahkan DNS domain** `rumahcctv.my.id` ke GitHub Pages (lihat langkah di bawah).
-2. Setelah DNS aktif & HTTPS terverifikasi, aktifkan *Enforce HTTPS* di **Settings → Pages**.
-3. **Ganti testimoni & angka statistik** dengan data pelanggan nyata. Jangan memakai rating palsu / skema `aggregateRating` karena melanggar kebijakan Google.
-4. **Ganti `assets/img/og-image.png`** dengan gambar brand asli 1200×630 px bila diinginkan (saat ini sudah berisi nama & nomor yang benar).
+1. **Verifikasi domain & submit sitemap** di Google Search Console: https://search.google.com/search-console → Add property → Domain → `rumahcctv.my.id` → verifikasi TXT → Sitemaps → `sitemap.xml`.
+2. **Ganti testimoni & angka statistik** dengan data pelanggan nyata. Jangan memakai rating palsu / skema `aggregateRating` karena melanggar kebijakan Google.
+3. **Ganti `assets/img/og-image.png`** dengan gambar brand asli 1200×630 px bila diinginkan (saat ini sudah berisi nama & nomor yang benar).
 
-### Langkah DNS untuk domain `.my.id`
-
-Di pengaturan DNS domain ( registrar / pengelola domain ), tambahkan:
-
-| Type | Name | Value |
-|---|---|---|
-| A | `@` | `185.199.108.153` |
-| A | `@` | `185.199.109.153` |
-| A | `@` | `185.199.110.153` |
-| A | `@` | `185.199.111.153` |
-| CNAME | `www` | `jhaf79.github.io` |
-
-Tunggu propagasi (beberapa menit sampai 24 jam), lalu cek di **Settings → Pages** status domain harus berubah jadi hijau/verified. Centang **Enforce HTTPS**.
-
-> Catatan: canonical di semua halaman sudah memakai `https://rumahcctv.my.id` (tanpa www). Pastikan domain yang dipakai adalah versi tanpa www sesuai canonical.
+> Catatan: canonical di semua halaman memakai `https://rumahcctv.my.id` (tanpa www) — sudah sesuai dengan domain utama.
 
 ## Struktur file
 
